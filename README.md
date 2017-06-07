@@ -57,7 +57,7 @@ Folders and files
 |tool/                      - 3rd party tools.
 </pre>
 - 3rd party tools
-    - [tensor_toolbox_2.6](http://www.sandia.gov/~tgkolda/TensorToolbox/thankyou-2.6.html)and [poblano_toolbox_1.1](https://software.sandia.gov/trac/poblano) for CP-WOPT.
+    - [tensor_toolbox_2.6](http://www.sandia.gov/~tgkolda/TensorToolbox/thankyou-2.6.html) and [poblano_toolbox_1.1](https://software.sandia.gov/trac/poblano) for CP-WOPT.
                                  
 
 First to do
