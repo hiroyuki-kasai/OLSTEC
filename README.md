@@ -11,7 +11,7 @@ Latest library version: 1.0.0 (see Release notes for more info)
 Introduction
 ----------
 **OLSTEC** is an online tensor subspace tracking algorithm based on the [Canonical Polyadic decomposition](https://en.wikipedia.org/wiki/Tensor_rank_decomposition) (CP decomposition) 
-(or PARAFAC or CANDECOMP decomposition) exploiting the [recursive least squares](https://en.wikipedia.org/wiki/Recursive_least_squares_filter) (RLS), dubbed OnLine Low-rank Subspace tracking by TEnsor CP Decomposition (OLSTEC)
+(or PARAFAC or CANDECOMP decomposition) exploiting the [recursive least squares](https://en.wikipedia.org/wiki/Recursive_least_squares_filter) (RLS).
 
 Motivation
 ----------
@@ -19,7 +19,6 @@ OLSTEC presents a new online tensor tracking algorithm for the partially observe
 exploiting the recursive least squares (RLS). Specifically, we consider the case where the partially observed tensor slice is acquired sequentially over time. Then, we estimate {A, B, C} by minimizing the exponentially weighted least squares defined as
 
 <img src="https://dl.dropboxusercontent.com/u/869853/Github/OLSTEC/images/problem_formulation.png" width="800">
-<br />
 
 
 Reference
