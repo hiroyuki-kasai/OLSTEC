@@ -15,7 +15,7 @@ OLSTEC is an online tensor subspace tracking algorithm based on the [Canonical P
 
 The problem formulation is define as below;
 
-<img src="https://dl.dropboxusercontent.com/u/869853/Github/OLSTEC/images/problem_formulation.png" width="500">
+<img src="https://dl.dropboxusercontent.com/u/869853/Github/OLSTEC/images/problem_formulation.png" width="900">
 <br /><br />
 
 
@@ -39,7 +39,7 @@ List of benchmarks
     - [**Petrels**](http://www2.ece.ohio-state.edu/~chi/papers/petrels_codes.zip)
         - Y. Chi, Y. C. Eldar, and R. Calderbank, "[Petrels: Parallel subspace estimation and tracking using recursive least squares from partial observations](http://ieeexplore.ieee.org/document/6605610/)," IEEE Transactions on Signal Processing, vol. 61, no. 23, pp. 5947-5959, 2013.
 - Batch tensor CP decomposition algorithm
-    - **CP WOPT**
+    - **CP-WOPT**
         - E. Acar, D. M. Dunlavy, T. G. Kolda, and M. M?rup, "[Scalable tensor factorizations with missing data](http://www.sandia.gov/~dmdunla/publications/AcDuKoMo10.pdf)," Proceedings of the 2010 SIAM International Conference on Data Mining (SDM10), 2010, pp. 701-712.
 
 Folders and files
@@ -83,14 +83,12 @@ inverse_snr = 1e-4;
 
 % generate tensor
 data_subtype = 'Static';
-[A, ~, ~, Omega, ~, ~, ~, ~, ~, ~, ~, ~] = generate_synthetic_tensor(tensor_dims, rank, fraction, inverse_snr, data_subtype);
+[A,~,~,Omega,~,~,~,~,~,~,~,~] = generate_synthetic_tensor(tensor_dims, rank, fraction, inverse_snr, data_subtype);
 
 
 % OLSTEC
-tic;
 options.verbose = 2;
 [Xsol_olstec, infos_olstec, sub_infos_olstec] = olstec(A, Omega, [], tensor_dims, rank, [], options);
-elapsed_time_olstec = toc;
 
 
 % plotting
