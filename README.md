@@ -37,11 +37,10 @@ List of benchmarks
     - [**Grouse**](http://sunbeam.ece.wisc.edu/grouse/) 
         - L. Balzano, R. Nowak, and B. Recht, "[Online identification and tracking of subspaces from highly incomplete information](https://arxiv.org/abs/1006.4046)," arXiv:1006.4046, 2010.
     - [**Petrels**](http://www2.ece.ohio-state.edu/~chi/papers/petrels_codes.zip)
-        - Y. Chi, Y. C. Eldar, and R. Calderbank, "[Petrels: Parallel subspace estimation and tracking using recursive least squares from partial observations](http://ieeexplore.ieee.org/document/6605610/)," IEEE Transactions on Signal Processing, vol. 61, no. 23, pp. 5947-5959,
-2013.
+        - Y. Chi, Y. C. Eldar, and R. Calderbank, "[Petrels: Parallel subspace estimation and tracking using recursive least squares from partial observations](http://ieeexplore.ieee.org/document/6605610/)," IEEE Transactions on Signal Processing, vol. 61, no. 23, pp. 5947-5959, 2013.
 - Batch tensor CP decomposition algorithm
-    - **CP WOPT **
-        - 
+    - **CP WOPT**
+        - E. Acar, D. M. Dunlavy, T. G. Kolda, and M. M?rup, "[Scalable tensor factorizations with missing data](http://www.sandia.gov/~dmdunla/publications/AcDuKoMo10.pdf)," Proceedings of the 2010 SIAM International Conference on Data Mining (SDM10), 2010, pp. 701-712.
 
 Folders and files
 ---------
