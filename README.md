@@ -54,8 +54,10 @@ Folders and files
 ./comparison.m              - Demonstration script for lasso problem with cross validation. 
 |auxiliary/                 - Some auxiliary tools for this project.
 |benchmark/                 - Project files for benchmarks.
-|tool/                      - 3rd party tools ([tensor_toolbox_2.6](http://www.sandia.gov/~tgkolda/TensorToolbox/thankyou-2.6.html) and [poblano_toolbox_1.1](https://software.sandia.gov/trac/poblano) for CP-WOPT).
+|tool/                      - 3rd party tools.
 </pre>
+- 3rd party tools
+    - [tensor_toolbox_2.6](http://www.sandia.gov/~tgkolda/TensorToolbox/thankyou-2.6.html)and [poblano_toolbox_1.1](https://software.sandia.gov/trac/poblano) for CP-WOPT.
                                  
 
 First to do
