@@ -10,20 +10,20 @@ Latest library version: 1.0.0 (see Release notes for more info)
 
 Introduction
 ----------
-OLSTEC is an online tensor subspace tracking algorithm based on the [Canonical Polyadic decomposition](https://en.wikipedia.org/wiki/Tensor_rank_decomposition) (CP decomposition) 
+**OLSTEC** is an online tensor subspace tracking algorithm based on the [Canonical Polyadic decomposition](https://en.wikipedia.org/wiki/Tensor_rank_decomposition) (CP decomposition) 
 (or PARAFAC or CANDECOMP decomposition) exploiting the [recursive least squares](https://en.wikipedia.org/wiki/Recursive_least_squares_filter) (RLS), dubbed OnLine Low-rank Subspace tracking by TEnsor CP Decomposition (OLSTEC)
 
 The problem formulation is define as below;
 
-<img src="https://dl.dropboxusercontent.com/u/869853/Github/OLSTEC/images/problem_formulation.png" width="900">
+<img src="https://dl.dropboxusercontent.com/u/869853/Github/OLSTEC/images/problem_formulation.png" width="800">
 <br /><br />
 
 
 Reference
 ---------
 - H.Kasai, "Online low-rank tensor subspace tracking from incomplete data by CP decomposition using recursive least squares," IEEE International conference on Acoustics, Speech and Signal Processing (ICASSP), 2016.
-- [Publisher's web site](http://ieeexplore.ieee.org/document/7472131/)
-- [arXiv web site](https://arxiv.org/abs/1602.07067)
+    - [Publisher's web site](http://ieeexplore.ieee.org/document/7472131/)
+    - [arXiv web site](https://arxiv.org/abs/1602.07067)
 
 List of benchmarks
 ---------
@@ -48,12 +48,13 @@ Folders and files
 <pre>
 ./                          - Top directory.
 ./README.md                 - This readme file.
+./olstec.m                  - OLSTEC algorithm file.
 ./run_me_first.m            - The scipt that you need to run first.
 ./demo.m                    - Demonstration script to check and understand this package easily. 
 ./comparison.m              - Demonstration script for lasso problem with cross validation. 
 |auxiliary/                 - Some auxiliary tools for this project.
 |benchmark/                 - Project files for benchmarks.
-|tool/                      - 3rd party tools (tensor_toolbox_2.6, poblano_toolbox_1.1).
+|tool/                      - 3rd party tools ([tensor_toolbox_2.6](http://www.sandia.gov/~tgkolda/TensorToolbox/thankyou-2.6.html) and [poblano_toolbox_1.1](https://software.sandia.gov/trac/poblano) for CP-WOPT).
 </pre>
                                  
 
