@@ -127,12 +127,12 @@ More results
 partial image to the rightmost, then returns to the leftmost image after stopping a certain period of time. 
     - The generated video includes right-panning video from 38-th to 113-th frame and from 342-th to 417-th frame, and left-panning video from 190-th to 265-th frame. 
     - results
+        - Normalized residual error and running average error.
+        - Input image, caluculated low-rank image, and residual error image at 283-th frame.
 
-        - Normalized residual error and running average error
 <img src="https://dl.dropboxusercontent.com/u/869853/Github/OLSTEC/images/real_datadata_dynamic_result_new.png" width="900">
 <br /><br />
 
-        - Input image, caluculated low-rank image, and residual error image at 283-th frame
 <img src="https://dl.dropboxusercontent.com/u/869853/Github/OLSTEC/images/dynamic_screen_shot.png" width="900">
 <br /><br />
 
