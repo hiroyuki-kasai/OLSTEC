@@ -48,15 +48,16 @@ Folders and files
 ---------
 
 <pre>
-./                          - Top directory.
-./README.md                 - This readme file.
-./olstec.m                  - OLSTEC algorithm file.
-./run_me_first.m            - The scipt that you need to run first.
-./demo.m                    - Demonstration script to check and understand this package easily. 
-./comparison.m              - Demonstration script for lasso problem with cross validation. 
-|auxiliary/                 - Some auxiliary tools for this project.
-|benchmark/                 - Project files for benchmarks.
-|tool/                      - 3rd party tools.
+./                              - Top directory.
+./README.md                     - This readme file.
+./olstec.m                      - OLSTEC algorithm file.
+./run_me_first.m                - The scipt that you need to run first.
+./demo.m                        - Demonstration script to check and understand this package easily. 
+./test_comparison_syntheric.m   - Demonstration script for synthetic dataset. 
+./test_comparison_real.m        - Demonstration script for real dataset. 
+|auxiliary/                     - Some auxiliary tools for this project.
+|benchmark/                     - Project files for benchmarks.
+|tool/                          - 3rd party tools.
 </pre>
 - 3rd party tools
     - [tensor_toolbox_2.6](http://www.sandia.gov/~tgkolda/TensorToolbox/thankyou-2.6.html) and [poblano_toolbox_1.1](https://software.sandia.gov/trac/poblano) for CP-WOPT.
