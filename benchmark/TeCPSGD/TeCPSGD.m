@@ -95,9 +95,13 @@ function [Xsol, infos, sub_infos] = TeCPSGD(A_in, Omega_in, Gamma_in, tensor_dim
     sub_infos.inner_iter = 0;
     sub_infos.err_residual = 0;
     sub_infos.err_run_ave = 0;
-    sub_infos.E = zeros(rows, cols);
     sub_infos.global_train_cost = 0; 
-    sub_infos.global_test_cost = 0;        
+    sub_infos.global_test_cost = 0;  
+    if store_matrix
+        sub_infos.I = zeros(rows * cols, slice_length);
+        sub_infos.L = zeros(rows * cols, slice_length);
+        sub_infos.E = zeros(rows * cols, slice_length);
+    end     
     
     % set parameters
     eta = 0;
@@ -123,7 +127,7 @@ function [Xsol, infos, sub_infos] = TeCPSGD(A_in, Omega_in, Gamma_in, tensor_dim
             % sampled original image
             I_mat = A(:,:,col_order(k));
             Omega_mat = Omega(:,:,col_order(k));
-            I_mat_Omega = Omega_mat.*I_mat;               
+            I_mat_Omega = Omega_mat .* I_mat;               
 
             % Reculculate gamma (C)
             temp3 = 0;
@@ -188,6 +192,14 @@ function [Xsol, infos, sub_infos] = TeCPSGD(A_in, Omega_in, Gamma_in, tensor_dim
 %             if disp_flag            
 %                 L{alg_idx} = [L{alg_idx} L_rec(:)];
 %             end   
+
+            if store_matrix
+                E_rec = I_mat - L_rec;
+                %sub_infos.E = [sub_infos.E E_rec(:)]; 
+                sub_infos.I(:,k) = I_mat_Omega(:);
+                sub_infos.L(:,k) = L_rec(:);
+                sub_infos.E(:,k) = E_rec(:);
+            end
 
             if store_subinfo
                 % Residual Error

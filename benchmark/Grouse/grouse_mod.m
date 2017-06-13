@@ -114,15 +114,18 @@ function [Xsol, infos, sub_infos, Xinit] = grouse_mod(Xinit, A_in, Omega_in, Gam
     % initialize sub_info
     sub_infos.inner_iter = [];
     sub_infos.err_residual = [];
-    sub_infos.err_run_ave = [];
-    sub_infos.E = [];    
+    sub_infos.err_run_ave = []; 
     sub_infos.global_train_cost = []; 
     sub_infos.global_test_cost = []; 
-    
+    if store_matrix
+        sub_infos.I = zeros(numr, numc);
+        sub_infos.L = zeros(numr, numc);
+        sub_infos.E = zeros(numr, numc);
+    end     
     
     
     % main loop
-    for outiter = 1 : maxCycles,
+    for outiter = 1 : maxCycles
         
         % permute samples
         if permute_on
@@ -188,9 +191,12 @@ function [Xsol, infos, sub_infos, Xinit] = grouse_mod(Xinit, A_in, Omega_in, Gam
             
             % Store reconstruction error
             if store_matrix
-                %Reconstruct Error Matrix
                 E_rec = I - L_rec;
-                sub_infos.E = [sub_infos.E E_rec(:)]; 
+                complete_idx = zeros(numr, 1);
+                complete_idx(idx) = 1;
+                sub_infos.I(:,k) = I .* complete_idx;
+                sub_infos.L(:,k) = L_rec;
+                sub_infos.E(:,k) = E_rec;
             end 
             
             if store_subinfo

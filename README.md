@@ -70,7 +70,7 @@ Run `run_me_first` for path configurations.
 run_me_first; 
 ```
 
-Usage example 1: Demo
+Usage example: Syhtethic dataset demo 
 ----------------------------
 Now, just execute `demo` for demonstration of this package.
 ```Matlab
@@ -116,6 +116,21 @@ ylabel('running average error');
 <img src="https://dl.dropboxusercontent.com/u/869853/Github/OLSTEC/images/demo_result.png" width="900">
 <br /><br />
 
+
+Usage example: More results
+----------------------------
+
+- Real-world data sets with moving background
+
+    - The input video is created virtually by moving cropped partial image from its original entire frame image of video. The cropping window with 288 ? 200 moves from the leftmost
+partial image to the rightmost, then returns to the leftmost image after stopping a certain period of time. The generated video includes right-panning video from 38-th to 113-th frame and from
+342-th to 417-th frame, and left-panning video from 190-th to 265-th frame. 
+
+<img src="https://dl.dropboxusercontent.com/u/869853/Github/OLSTEC/images/real_datadata_dynamic_result_new.png" width="900">
+<br /><br />
+
+<img src="https://dl.dropboxusercontent.com/u/869853/Github/OLSTEC/images/dynamic_screen_shot.png" width="900">
+<br /><br />
 
 License
 -------

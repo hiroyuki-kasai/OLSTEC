@@ -120,7 +120,7 @@ function [Xsol, infos, sub_infos] = olstec(A_in, Omega_in, Gamma_in, tensor_dims
     
     % prepare Rinv histroy buffers
     RAinv = repmat(100*eye(rank), rows, 1);
-    RCinv = repmat(100*eye(rank), cols, 1);
+    RBinv = repmat(100*eye(rank), cols, 1);
 
     % prepare
     N_AlphaAlphaT = zeros(rank*rows, rank*(TW_LEN+1));
@@ -156,9 +156,13 @@ function [Xsol, infos, sub_infos] = olstec(A_in, Omega_in, Gamma_in, tensor_dims
     sub_infos.inner_iter = 0;
     sub_infos.err_residual = 0;
     sub_infos.err_run_ave = 0;
-    sub_infos.E = zeros(rows, cols);
     sub_infos.global_train_cost = 0; 
-    sub_infos.global_test_cost = 0;        
+    sub_infos.global_test_cost = 0; 
+    if store_matrix
+        sub_infos.I = zeros(rows * cols, slice_length);
+        sub_infos.L = zeros(rows * cols, slice_length);
+        sub_infos.E = zeros(rows * cols, slice_length);
+    end    
       
 
     % Main loop
@@ -201,7 +205,7 @@ function [Xsol, infos, sub_infos] = olstec(A_in, Omega_in, Gamma_in, tensor_dims
             gamma = temp4 \ temp3;                                             % equation (18)            
 
 
-            %% A Update
+            %% update A
             for m=1:rows
 
                 Omega_mat_ind = find(Omega_mat(m,:));
@@ -248,10 +252,11 @@ function [Xsol, infos, sub_infos] = olstec(A_in, Omega_in, Gamma_in, tensor_dims
                 RAinv((m-1)*rank+1:m*rank,:) = TAinv;
             end 
 
+            % Final update of A
             A_t0 = A_t1;
 
 
-            %% C Update
+            %% update B 
             for n=1:cols
 
                 Omega_mat_ind = find(Omega_mat(:,n));
@@ -261,43 +266,39 @@ function [Xsol, infos, sub_infos] = olstec(A_in, Omega_in, Gamma_in, tensor_dims
                 N_beta_Omega = A_t0_Omega * diag(gamma);
                 N_beta_beta_t_Omega = N_beta_Omega' * N_beta_Omega;                
 
-                % Calc TCinv (i.e. RCinv)
-                TCinv = lambda^(-1) * RCinv((n-1)*rank+1:n*rank,:);
+                % Calc TBinv (i.e. RBinv)
+                TBinv = lambda^(-1) * RBinv((n-1)*rank+1:n*rank,:);
                 if TW_Flag
                     Oldest_beta_beta_t = N_BetaBetaT((n-1)*rank+1:n*rank,1:rank);
-                    TCinv = inv(inv(TCinv) + N_beta_beta_t_Omega + (mu - lambda*mu)*eye(rank) - lambda^TW_LEN * Oldest_beta_beta_t);
+                    TBinv = inv(inv(TBinv) + N_beta_beta_t_Omega + (mu - lambda*mu)*eye(rank) - lambda^TW_LEN * Oldest_beta_beta_t);
                 else
-                    TCinv = inv(inv(TCinv) + N_beta_beta_t_Omega + (mu - lambda*mu)*eye(rank));
+                    TBinv = inv(inv(TBinv) + N_beta_beta_t_Omega + (mu - lambda*mu)*eye(rank));
                 end
 
                 % Calc delta B_t0(n,:)
                 recX_col_Omega = B_t0(n,:) * N_beta_Omega';
                 resi_col_Omega = I_col_Omega' - recX_col_Omega;
                 N_beta_Resi_Omega = N_beta_Omega' * diag(resi_col_Omega);
-                N_resi_Rt_beta = TCinv * N_beta_Resi_Omega;
+                N_resi_Rt_beta = TBinv * N_beta_Resi_Omega;
                 delta_C_t0_n = sum(N_resi_Rt_beta,2);                
 
-                % Update C
                 if TW_Flag
-                    % Upddate C
+                    % Upddate B
                     Oldest_beta_resi = N_BetaResi((n-1)*rank+1:n*rank,1)';
-                    B_t1(n,:) = B_t0(n,:) - (mu - lambda*mu) * B_t0(m,:) * TCinv' + delta_C_t0_n' - lambda^TW_LEN * Oldest_beta_resi;
+                    B_t1(n,:) = B_t0(n,:) - (mu - lambda*mu) * B_t0(m,:) * TBinv' + delta_C_t0_n' - lambda^TW_LEN * Oldest_beta_resi;
 
                     % Store data
                     N_BetaBetaT((n-1)*rank+1:n*rank,TW_LEN*rank+1:(TW_LEN+1)*rank) = N_beta_beta_t_Omega;
                     N_BetaResi((n-1)*rank+1:n*rank,TW_LEN+1) = sum(N_beta_Resi_Omega,2);                     
                 else
-                    B_t1(n,:) = B_t0(n,:) - (mu - lambda*mu) * B_t0(n,:) * TCinv' + delta_C_t0_n';
+                    B_t1(n,:) = B_t0(n,:) - (mu - lambda*mu) * B_t0(n,:) * TBinv' + delta_C_t0_n';
 
                 end
 
-                % Store RCinv
-                RCinv((n-1)*rank+1:n*rank,:) = TCinv;   
+                % Store RBinv
+                RBinv((n-1)*rank+1:n*rank,:) = TBinv;   
             end
 
-            % Update of Rinv based on lambda (forgetting paramter)
-            %RAinv = lambda^(-1)*RAinv;
-            %RCinv = lambda^(-1)*RCinv;
 
             if TW_Flag
                 N_AlphaAlphaT(:,1:rank) = [];
@@ -306,11 +307,11 @@ function [Xsol, infos, sub_infos] = olstec(A_in, Omega_in, Gamma_in, tensor_dims
                 N_BetaResi(:,1) = [];
             end
 
-            % Final update of A and C
-            %A_t0 = A_t1;
+            % Final update of B
             B_t0 = B_t1;             
 
-            % Reculculate gamma (B)
+            
+            %% Reculculate gamma (B)
             temp3 = 0;
             temp4 = 0;
             for m=1:rows
@@ -351,7 +352,9 @@ function [Xsol, infos, sub_infos] = olstec(A_in, Omega_in, Gamma_in, tensor_dims
                 % Store reconstruction error
                 if store_matrix
                     E_rec = I_mat - L_rec;
-                    sub_infos.E = [sub_infos.E E_rec(:)]; 
+                    sub_infos.I(:,k) = I_mat_Omega(:);
+                    sub_infos.L(:,k) = L_rec(:);
+                    sub_infos.E(:,k) = E_rec(:);
                 end
 
                 for f=1:slice_length

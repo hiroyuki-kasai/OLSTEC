@@ -69,16 +69,20 @@ function [Xsol, infos, sub_infos, Xinit] = petrels_mod(Xinit, A_in, Omega_in, Ga
     % initialize sub_infos
     sub_infos.inner_iter = [];
     sub_infos.err_residual = [];
-    sub_infos.err_run_ave = [];
-    sub_infos.E = [];    
+    sub_infos.err_run_ave = []; 
     sub_infos.global_train_cost = []; 
     sub_infos.global_test_cost = [];  
+    if store_matrix
+        sub_infos.I = zeros(numr, numc);
+        sub_infos.L = zeros(numr, numc);
+        sub_infos.E = zeros(numr, numc);
+    end      
     
     % prepare buffer
     Rinv    = repmat(100*eye(maxrank),1,numr);
 
     % main loop
-    for outiter = 1:maxepochs
+    for outiter = 1 : maxepochs
         
         % permute samples
         if permute_on
@@ -90,7 +94,7 @@ function [Xsol, infos, sub_infos, Xinit] = petrels_mod(Xinit, A_in, Omega_in, Ga
         % Begin the time counter for the epoch
         t_begin = tic();    
 
-        for k=1:numc
+        for k= 1 : numc
             
             % Pull out the relevant indices and revealed entries for this column
             I = A(:,col_order(k));
@@ -134,21 +138,17 @@ function [Xsol, infos, sub_infos, Xinit] = petrels_mod(Xinit, A_in, Omega_in, Ga
 
             % Reconstruct Low-maxrank Matrix
             L_rec = U * weights; 
-%             if disp_flag
-%                 L{alg_idx} = [L{alg_idx} L_rec];
-%             end
-%             
-%             if save_rec_img && (fnum == rec_img_framenum)
-%                 Rec_img{alg_idx} = L_rec(:);
-%             end              
-
-
-             % Store reconstruction error
+            
+            % Store reconstruction error
             if store_matrix
-                %Reconstruct Error Matrix
                 E_rec = I - L_rec;
-                sub_infos.E = [sub_infos.E E_rec(:)]; 
-            end 
+                complete_idx = zeros(numr, 1);
+                complete_idx(idx) = 1;
+                sub_infos.I(:,k) = I .* complete_idx;
+                sub_infos.L(:,k) = L_rec;
+                sub_infos.E(:,k) = E_rec;
+            end            
+
             
             if store_subinfo
                 % Frame-unit Estimation Error

@@ -78,9 +78,13 @@ function [Xsol, infos, sub_infos, Xinit] = grasta_mod(Xinit, A_in, Omega_in, Gam
     sub_infos.inner_iter = [];
     sub_infos.err_residual = [];
     sub_infos.err_run_ave = [];
-    sub_infos.E = [];    
     sub_infos.global_train_cost = []; 
-    sub_infos.global_test_cost = [];     
+    sub_infos.global_test_cost = []; 
+    if store_matrix
+        sub_infos.I = zeros(numr, numc);
+        sub_infos.L = zeros(numr, numc);
+        sub_infos.E = zeros(numr, numc);
+    end     
 
     for outiter = 1 : maxepochs
         
@@ -108,11 +112,14 @@ function [Xsol, infos, sub_infos, Xinit] = grasta_mod(Xinit, A_in, Omega_in, Gam
             Weight(:, col_order(k)) = status.w * status.SCALE;
 
 
-             % Store reconstruction error
+            % Store reconstruction error
             if store_matrix
-                %Reconstruct Error Matrix
-                E_rec = I - A_Slice_rec;
-                sub_infos.E = [sub_infos.E E_rec(:)]; 
+                E_rec = I - L_rec;
+                complete_idx = zeros(numr, 1);
+                complete_idx(idx) = 1;
+                sub_infos.I(:,k) = I .* complete_idx;
+                sub_infos.L(:,k) = L_rec;
+                sub_infos.E(:,k) = E_rec;
             end 
             
             if store_subinfo
