@@ -18,7 +18,7 @@ Motivation
 OLSTEC presents a new online tensor tracking algorithm for the partially observed high-dimensional data stream corrupted by noise. We focus on the fixed-rank higher-order [matrix completion](https://en.wikipedia.org/wiki/Matrix_completion) (i.e., tensor completion) algorithm with a second-order stochastic gradient descent based on the CP decomposition
 exploiting the recursive least squares (RLS). Specifically, we consider the case where the partially observed tensor slice is acquired sequentially over time. Then, we estimate {A, B, C} by minimizing the exponentially weighted least squares defined as
 
-<img src="https://drive.google.com/open?id=0BziKKvWUVAwVbG5fVmphamhSZkk" width="800">
+<img src="https://dl.dropboxusercontent.com/u/869853/Github/OLSTEC/images/problem_formulation.png" width="800">
 
 
 Reference
@@ -114,7 +114,7 @@ ylabel('running average error');
 
 * Output results 
 
-<img src="https://drive.google.com/open?id=0BziKKvWUVAwVZEVpZHdJRXFUaHc" width="900">
+<img src="https://www.dropbox.com/s/xrxq1ybdeklg9yu/demo_result.png?dl=0" width="900">
 <br /><br />
 
 
@@ -132,10 +132,10 @@ partial image to the rightmost, then returns to the leftmost image after stoppin
         - Input image, caluculated low-rank image, and residual error image at 283-th frame.
 
 <br />
-<img src="https://drive.google.com/open?id=0BziKKvWUVAwVMG1MRXk4amdWLUU" width="900">
+<img src="https://dl.dropboxusercontent.com/u/869853/Github/OLSTEC/images/real_datadata_dynamic_result_new.png" width="900">
 <br />
 
-<img src="https://drive.google.com/open?id=0BziKKvWUVAwVWUNFdFZxcVN3WFE" width="900">
+<img src="https://dl.dropboxusercontent.com/u/869853/Github/OLSTEC/images/dynamic_screen_shot.png" width="900">
 <br /><br />
 
 License
