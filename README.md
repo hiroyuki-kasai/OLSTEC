@@ -42,7 +42,7 @@ List of benchmarks
         - Y. Chi, Y. C. Eldar, and R. Calderbank, "[Petrels: Parallel subspace estimation and tracking using recursive least squares from partial observations](http://ieeexplore.ieee.org/document/6605610/)," IEEE Transactions on Signal Processing, vol. 61, no. 23, pp. 5947-5959, 2013.
 - Batch tensor CP decomposition algorithm
     - **CP-WOPT**
-        - E. Acar, D. M. Dunlavy, T. G. Kolda, and M. M?rup, "[Scalable tensor factorizations with missing data](http://www.sandia.gov/~dmdunla/publications/AcDuKoMo10.pdf)," Proceedings of the 2010 SIAM International Conference on Data Mining (SDM10), 2010, pp. 701-712.
+        - E. Acar, D. M. Dunlavy, T. G. Kolda, and M. Mprup, "[Scalable tensor factorizations with missing data](http://www.sandia.gov/~dmdunla/publications/AcDuKoMo10.pdf)," Proceedings of the 2010 SIAM International Conference on Data Mining (SDM10), 2010, pp. 701-712.
 
 Folders and files
 ---------
@@ -114,7 +114,7 @@ ylabel('running average error');
 
 * Output results 
 
-<img src="http://www.kasailab.com/Public/Github/OLSTEC/images/demo_result.png?dl=0" width="900">
+<img src="http://www.kasailab.com/Public/Github/OLSTEC/images/demo_result.png" width="900">
 <br /><br />
 
 
@@ -136,7 +136,7 @@ partial image to the rightmost, then returns to the leftmost image after stoppin
 <br />
 
 <img src="http://www.kasailab.com/Public/Github/OLSTEC/images/dynamic_screen_shot.png" width="900">
-<br /><br />
+<br />
 
 License
 -------
