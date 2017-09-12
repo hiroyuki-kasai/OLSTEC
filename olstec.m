@@ -23,6 +23,7 @@ function [Xsol, infos, sub_infos] = olstec(A_in, Omega_in, Gamma_in, tensor_dims
 % This file is part of OLSTEC package.
 %
 % Created by H.Kasai on June 07, 2017
+% Modified by H.Kasai on Sep. 12, 2017
 
 
     % extract options
@@ -146,7 +147,7 @@ function [Xsol, infos, sub_infos] = olstec(A_in, Omega_in, Gamma_in, tensor_dims
     
     
     % initialize infos
-    infos.iter = 1;
+    infos.iter = 0;
     infos.train_cost = train_cost;
     infos.test_cost = test_cost;
     infos.time = 0;   
@@ -162,6 +163,10 @@ function [Xsol, infos, sub_infos] = olstec(A_in, Omega_in, Gamma_in, tensor_dims
         sub_infos.I = zeros(rows * cols, slice_length);
         sub_infos.L = zeros(rows * cols, slice_length);
         sub_infos.E = zeros(rows * cols, slice_length);
+    end 
+    
+    if verbose > 1
+        fprintf('OLSTEC Epoch 000, Cost %7.3e, Cost(test) %7.3e\n', train_cost, test_cost); 
     end    
       
 
@@ -373,7 +378,7 @@ function [Xsol, infos, sub_infos] = olstec(A_in, Omega_in, Gamma_in, tensor_dims
                 sub_infos.global_test_cost  = [sub_infos.global_test_cost test_cost];             
 
 
-                if verbose > 1
+                if verbose > 2
                     fnum = (outiter-1)*slice_length + k;
                     fprintf('OLSTEC: fnum = %03d, cost = %e, error = %e\n', fnum, train_cost, error);
                 end

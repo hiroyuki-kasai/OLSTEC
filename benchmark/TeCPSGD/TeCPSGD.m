@@ -86,7 +86,7 @@ function [Xsol, infos, sub_infos] = TeCPSGD(A_in, Omega_in, Gamma_in, tensor_dim
     
 
     % initialize infos
-    infos.iter = 1;
+    infos.iter = 0;
     infos.train_cost = train_cost;
     infos.test_cost = test_cost;
     infos.time = 0;
@@ -105,6 +105,10 @@ function [Xsol, infos, sub_infos] = TeCPSGD(A_in, Omega_in, Gamma_in, tensor_dim
     
     % set parameters
     eta = 0;
+    
+    if verbose > 0
+        fprintf('TeCPSGD [%d] Epoch 000, Cost %7.3e, Cost(test) %7.3e, Stepsize %7.3e\n', stepsize_init, train_cost, test_cost, eta);
+    end    
     
 
     % main loop
@@ -266,7 +270,7 @@ function [Xsol, infos, sub_infos] = TeCPSGD(A_in, Omega_in, Gamma_in, tensor_dim
         infos.train_cost = [infos.train_cost; train_cost];
         infos.test_cost = [infos.test_cost; test_cost];        
 
-        if verbose > 1
+        if verbose > 0
             fprintf('TeCPSGD [%d] Epoch %0.3d, Cost %7.3e, Cost(test) %7.3e, Stepsize %7.3e\n', stepsize_init, outiter, train_cost, test_cost, eta);
         end
         
