@@ -114,7 +114,7 @@ ylabel('running average error');
 
 * Output results 
 
-<img src="http://www.kasailab.com/Public/Github/OLSTEC/images/demo_result.png" width="900">
+<img src="http://www.kasailab.com/public/github/OLSTEC/images/demo_result.png" width="900">
 <br /><br />
 
 
@@ -132,10 +132,10 @@ partial image to the rightmost, then returns to the leftmost image after stoppin
         - Input image, caluculated low-rank image, and residual error image at 283-th frame.
 
 <br />
-<img src="http://www.kasailab.com/Public/Github/OLSTEC/images/real_datadata_dynamic_result_new.png" width="900">
+<img src="http://www.kasailab.com/public/github/OLSTEC/images/real_datadata_dynamic_result_new.png" width="900">
 <br />
 
-<img src="http://www.kasailab.com/Public/Github/OLSTEC/images/dynamic_screen_shot.png" width="900">
+<img src="http://www.kasailab.com/public/github/OLSTEC/images/dynamic_screen_shot.png" width="900">
 <br />
 
 License
