@@ -23,6 +23,9 @@ exploiting the recursive least squares (RLS). Specifically, we consider the case
 
 Reference
 ---------
+- H.Kasai, "Fast online low-rank tensor subspace tracking by CP decomposition using recursive least squares from incomplete observations," Neurocomputing, Volume 347, 28, pp. 177-190, 2019.
+    - [Publisher's web site](https://www.sciencedirect.com/science/article/abs/pii/S0925231218313584)
+    - [arXiv web site](https://arxiv.org/abs/1709.10276)
 - H.Kasai, "Online low-rank tensor subspace tracking from incomplete data by CP decomposition using recursive least squares," IEEE International conference on Acoustics, Speech and Signal Processing (ICASSP), 2016.
     - [Publisher's web site](http://ieeexplore.ieee.org/document/7472131/)
     - [arXiv web site](https://arxiv.org/abs/1602.07067)
