@@ -2,7 +2,7 @@
 
 ----------
 
-Authors: [Hiroyuki Kasai](http://kasai.kasailab.com/)
+Authors: [Hiroyuki Kasai](http://kasai.comm.waseda.ac.jp/kasai/)
 
 Last page update: Sep. 12, 2017
 
